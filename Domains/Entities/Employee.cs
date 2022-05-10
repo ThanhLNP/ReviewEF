@@ -4,25 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReviewEF.Domains.Entities
 {
-    public class ITAssetInventory
+    public class Employee
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        [ForeignKey("ITAsset")]
-        public long AssetId { get; set; }
-
-        public DateTime InventoryDate { get; set; }
-
-        [SqlDefaultValue("0")]
-        [Range(0, Double.PositiveInfinity)]
-        public int NumberAssigned { get; set; }
-
-        [SqlDefaultValue("0")]
-        [Range(0, Double.PositiveInfinity)]
-        public int NumberInStock { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Department { get; set; }
+        public string Extension { get; set; }
+        public string Email { get; set; }
         public string OtherDetails { get; set; }
 
         [SqlDefaultValue("now()")]
@@ -34,6 +26,6 @@ namespace ReviewEF.Domains.Entities
         [SqlDefaultValue("false")]
         public bool? IsDeleted { get; set; }
 
-        public ITAsset ITAsset { get; set; }
+        public ICollection<EmployeeAsset> EmployeeAssets { get; set; }
     }
 }
