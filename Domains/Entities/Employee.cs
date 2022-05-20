@@ -6,6 +6,12 @@ namespace ReviewEF.Domains.Entities
 {
     public class Employee
     {
+        public string this[string propertyName]
+        {
+            get { return this.GetType().GetProperty(propertyName).GetValue(this, null).ToString(); }
+            set { this.GetType().GetProperty(propertyName).SetValue(this, value, null); }
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
